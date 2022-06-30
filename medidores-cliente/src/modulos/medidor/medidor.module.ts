@@ -6,9 +6,9 @@ import {Medidor, MedidorSchema} from "./medidor.schema";
 
 @Module({
   imports: [
-    MongooseModule.forFeature([
-      { name: Medidor.name, schema: MedidorSchema },
-    ]),
+    // MongooseModule.forFeature([
+    //   { name: Medidor.name, schema: MedidorSchema },
+    // ]),
   ],
   providers: [MedidorService],
   controllers: [MedidorController]

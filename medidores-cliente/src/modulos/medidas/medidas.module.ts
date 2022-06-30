@@ -6,9 +6,9 @@ import {Medidas, MedidasSchema} from "./medidas.schema";
 
 @Module({
   imports: [
-    MongooseModule.forFeature([
-      { name: Medidas.name, schema: MedidasSchema },
-    ]),
+    // MongooseModule.forFeature([
+    //   { name: Medidas.name, schema: MedidasSchema },
+    // ]),
   ],
   providers: [MedidasService],
   controllers: [MedidasController]
