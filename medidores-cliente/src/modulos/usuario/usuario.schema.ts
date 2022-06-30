@@ -35,6 +35,11 @@ export class Usuario extends Document {
   password: string;
 
   @Prop({
+    required: true,
+  })
+  terminosCond: 1 | 0;
+
+  @Prop({
     type: [MedidorSchema],
     required: true
   })

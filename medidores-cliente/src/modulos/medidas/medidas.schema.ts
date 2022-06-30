@@ -12,6 +12,26 @@ export class Medidas extends Document {
     required: true,
   })
   medida: number;
+
+  @Prop({
+    required: true,
+  })
+  vL1: number;
+
+  @Prop({
+    required: true,
+  })
+  vL2: number;
+
+  @Prop({
+    required: true,
+  })
+  aL1: number;
+
+  @Prop({
+    required: true,
+  })
+  aL2: number;
 }
 
 export const MedidasSchema = SchemaFactory.createForClass(Medidas)
