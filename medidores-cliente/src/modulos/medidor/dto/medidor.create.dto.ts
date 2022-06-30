@@ -1,7 +1,7 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import {IsArray, IsNotEmpty, IsString, ValidateNested} from 'class-validator';
 import {Type} from "class-transformer";
-import {MedidasCreateDto} from "./medidas.create.dto";
+import {MedidasCreateDto} from "../../medidas/dto/medidas.create.dto";
 
 export class MedidorCreateDto {
   @ApiProperty({

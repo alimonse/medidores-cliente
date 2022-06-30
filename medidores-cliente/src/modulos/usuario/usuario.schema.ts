@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import {Document, Types} from 'mongoose';
-import {Medidor, MedidorSchema} from "./medidor.schema";
+import {Medidor, MedidorSchema} from "../medidor/medidor.schema";
 
 @Schema()
 export class Usuario extends Document {

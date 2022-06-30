@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MedidasService } from './medidas.service';
 import { MedidasController } from './medidas.controller';
 import {MongooseModule} from "@nestjs/mongoose";
-import {Medidas, MedidasSchema} from "../usuario/schemas/medidas.schema";
+import {Medidas, MedidasSchema} from "./medidas.schema";
 
 @Module({
   imports: [

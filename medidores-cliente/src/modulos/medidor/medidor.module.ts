@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MedidorService } from './medidor.service';
 import { MedidorController } from './medidor.controller';
 import {MongooseModule} from "@nestjs/mongoose";
-import {Medidor, MedidorSchema} from "../usuario/schemas/medidor.schema";
+import {Medidor, MedidorSchema} from "./medidor.schema";
 
 @Module({
   imports: [
