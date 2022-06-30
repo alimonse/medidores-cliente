@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 @Schema()
-export class MedidasSchema extends Document {
+export class Medidas extends Document {
   @Prop({
     required: true,
   })
@@ -14,4 +14,4 @@ export class MedidasSchema extends Document {
   medida: number;
 }
 
-export const Medidas = SchemaFactory.createForClass(MedidasSchema)
+export const MedidasSchema = SchemaFactory.createForClass(Medidas)

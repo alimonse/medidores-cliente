@@ -1,8 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import {Document, Types} from 'mongoose';
+import {Medidor, MedidorSchema} from "./medidor.schema";
 
 @Schema()
-export class UsuarioSchema extends Document {
+export class Usuario extends Document {
   @Prop({
     required: true,
   })
@@ -32,6 +33,12 @@ export class UsuarioSchema extends Document {
     required: true,
   })
   password: string;
+
+  @Prop({
+    type: [MedidorSchema],
+    required: true
+  })
+  medidores: Types.Array<Medidor>
 }
 
-export const Usuario = SchemaFactory.createForClass(UsuarioSchema);
+export const UsuarioSchema= SchemaFactory.createForClass(Usuario);

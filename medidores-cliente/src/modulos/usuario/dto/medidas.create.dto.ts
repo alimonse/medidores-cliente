@@ -1,5 +1,5 @@
 import { ApiProperty, PartialType} from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import {IsNotEmpty, IsNumber, IsString} from 'class-validator';
 
 export class MedidasCreateDto {
   @ApiProperty({
@@ -15,7 +15,7 @@ export class MedidasCreateDto {
     example: '0.09',
   })
   @IsNotEmpty()
-  @IsString()
+  @IsNumber()
   medida: number;
 }
 

@@ -1,5 +1,7 @@
-import { IsArray, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import {IsArray, IsNotEmpty, IsOptional, IsString, ValidateNested} from 'class-validator';
 import { ApiProperty, PartialType } from '@nestjs/swagger';
+import {Type} from "class-transformer";
+import {MedidorCreateDto} from "./medidor.create.dto";
 
 export class CreateUserDto {
   @ApiProperty({
@@ -35,8 +37,14 @@ export class CreateUserDto {
   direccion: string;
 
   @IsNotEmpty()
+  @IsString()
+  password: string;
+
+  @IsNotEmpty()
   @IsArray()
-  password: string[];
+  @ValidateNested({ each: true })
+  @Type(() => MedidorCreateDto)
+  medidores: MedidorCreateDto[];
 }
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {}

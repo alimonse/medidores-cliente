@@ -1,4 +1,8 @@
-import { Controller } from '@nestjs/common';
+import { Controller} from '@nestjs/common';
+
 
 @Controller('medidor')
-export class MedidorController {}
+export class MedidorController {
+
+
+}

@@ -1,5 +1,7 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import {IsArray, IsNotEmpty, IsString, ValidateNested} from 'class-validator';
+import {Type} from "class-transformer";
+import {MedidasCreateDto} from "./medidas.create.dto";
 
 export class MedidorCreateDto {
   @ApiProperty({
@@ -16,6 +18,13 @@ export class MedidorCreateDto {
   })
   @IsNotEmpty()
   estado: 1 | 0;
+
+
+  @IsNotEmpty()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => MedidasCreateDto)
+  medidas: MedidasCreateDto[];
 }
 
 export class UpdateMedidorDto extends PartialType(MedidorCreateDto) {}
