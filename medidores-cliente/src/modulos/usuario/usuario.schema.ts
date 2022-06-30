@@ -32,6 +32,11 @@ export class UsuarioSchema extends Document {
     required: true,
   })
   password: string;
+
+  @Prop({
+    required: true,
+  })
+  terminosCond: 1 | 0;
 }
 
 export const Usuario = SchemaFactory.createForClass(UsuarioSchema);

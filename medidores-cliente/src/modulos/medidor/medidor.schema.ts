@@ -12,6 +12,7 @@ export class MedidorSchema extends Document {
     required: true,
   })
   estado: 1 | 0;
+
 }
 
-export const Medidor = SchemaFactory.createForClass(MedidorSchema)
+export const Medidor = SchemaFactory.createForClass(MedidorSchema);
