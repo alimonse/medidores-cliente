@@ -1,7 +1,7 @@
 import {
-  IsArray,
+  IsArray, IsBoolean,
   IsNotEmpty,
-  IsNumber,
+  IsNumber, IsNumberString,
   IsString,
   ValidateNested,
 } from 'class-validator';
@@ -35,6 +35,10 @@ export class CreateUserDto {
   celular: string;
 
   @IsNotEmpty()
+  @IsNumberString()
+  cedula: string;
+
+  @IsNotEmpty()
   @IsString()
   correo: string;
 
@@ -47,8 +51,8 @@ export class CreateUserDto {
   password: string;
 
   @IsNotEmpty()
-  @IsNumber()
-  terminosCond: 1 | 0;
+  @IsBoolean()
+  terminosCond: boolean;
 
   @IsNotEmpty()
   @IsArray()
@@ -58,3 +62,15 @@ export class CreateUserDto {
 }
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {}
+
+export class UsuarioPassDto {
+  @IsNotEmpty()
+  @IsNumberString()
+  cedula: string;
+
+  @IsNotEmpty()
+  @IsString()
+  password: string;
+
+
+}

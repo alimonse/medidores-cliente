@@ -1,5 +1,6 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import {Expose} from "class-transformer";
 
 export class MedidasCreateDto {
   @ApiProperty({
@@ -40,6 +41,7 @@ export class MedidasCreateDto {
   })
   @IsNotEmpty()
   @IsNumber()
+  @Expose()
   aL1: number;
 
   @ApiProperty({

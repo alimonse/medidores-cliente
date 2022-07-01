@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import {Expose} from "class-transformer";
 
 @Schema()
 export class Medidas extends Document {
@@ -22,6 +23,7 @@ export class Medidas extends Document {
     required: true,
   })
   vL2: number;
+
 
   @Prop({
     required: true,

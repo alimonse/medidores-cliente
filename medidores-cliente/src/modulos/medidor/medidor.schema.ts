@@ -12,7 +12,7 @@ export class Medidor extends Document {
   @Prop({
     required: true,
   })
-  estado: 1 | 0;
+  estado: boolean;
 
   @Prop({
     type: [MedidasSchema],

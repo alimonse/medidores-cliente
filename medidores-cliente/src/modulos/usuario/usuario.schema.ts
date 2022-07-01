@@ -27,6 +27,11 @@ export class Usuario extends Document {
   @Prop({
     required: true,
   })
+  cedula: string;
+
+  @Prop({
+    required: true,
+  })
   direccion: string;
 
   @Prop({
@@ -37,7 +42,7 @@ export class Usuario extends Document {
   @Prop({
     required: true,
   })
-  terminosCond: 1 | 0;
+  terminosCond: boolean;
 
   @Prop({
     type: [MedidorSchema],

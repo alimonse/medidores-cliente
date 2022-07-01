@@ -1,12 +1,18 @@
 import {Body, Controller, Get, Post} from '@nestjs/common';
 import {UsuarioService} from "./usuario.service";
-import {CreateUserDto} from "./dto/usuario.create.dto";
+import {CreateUserDto, UsuarioPassDto} from "./dto/usuario.create.dto";
 
 @Controller('usuario')
 export class UsuarioController {
     constructor(
         private readonly _usuarioService: UsuarioService
     ) {
+    }
+
+
+    @Post('consultaU')
+    buscarPorUsuarioyContrasena(@Body()usuarioPass:UsuarioPassDto ){
+        return this._usuarioService.buscarPorUsuarioyContrasena(usuarioPass)
     }
 
     @Post()
@@ -18,4 +24,8 @@ export class UsuarioController {
     obtener() {
         return this._usuarioService.obtener();
     }
+
+
+
+
 }
