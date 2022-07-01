@@ -34,4 +34,4 @@ export class Medidas extends Document {
   aL2: number;
 }
 
-export const MedidasSchema = SchemaFactory.createForClass(Medidas)
+export const MedidasSchema = SchemaFactory.createForClass(Medidas);
