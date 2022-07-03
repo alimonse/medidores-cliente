@@ -3,7 +3,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Usuario } from './usuario.schema';
 import { CreateUserDto, UsuarioPassDto } from './dto/usuario.create.dto';
-import { ServiciosExternosModule } from '../servicios-externos/servicios-externos.module';
 import { ApiMedidoresService } from '../servicios-externos/api-medidores.service';
 
 @Injectable()
