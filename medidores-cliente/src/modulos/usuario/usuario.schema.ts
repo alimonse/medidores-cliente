@@ -46,9 +46,8 @@ export class Usuario extends Document {
 
   @Prop({
     type: [MedidorSchema],
-    required: true,
   })
-  medidores: Types.Array<Medidor>;
+  medidores?: Types.Array<Medidor>;
 }
 
 export const UsuarioSchema = SchemaFactory.createForClass(Usuario);

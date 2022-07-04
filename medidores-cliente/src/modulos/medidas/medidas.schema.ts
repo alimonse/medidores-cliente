@@ -1,38 +1,24 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import {Expose} from "class-transformer";
 
 @Schema()
 export class Medidas extends Document {
-  @Prop({
-    required: true,
-  })
+  @Prop()
   fecha: string;
 
-  @Prop({
-    required: true,
-  })
+  @Prop()
   medida: number;
 
-  @Prop({
-    required: true,
-  })
+  @Prop()
   vL1: number;
 
-  @Prop({
-    required: true,
-  })
+  @Prop()
   vL2: number;
 
-
-  @Prop({
-    required: true,
-  })
+  @Prop()
   aL1: number;
 
-  @Prop({
-    required: true,
-  })
+  @Prop()
   aL2: number;
 }
 

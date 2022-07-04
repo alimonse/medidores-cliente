@@ -1,7 +1,7 @@
 import {
   IsArray, IsBoolean,
   IsNotEmpty,
-  IsNumber, IsNumberString,
+  IsNumber, IsNumberString, IsOptional,
   IsString,
   ValidateNested,
 } from 'class-validator';
@@ -54,11 +54,11 @@ export class CreateUserDto {
   @IsBoolean()
   terminosCond: boolean;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => MedidorCreateDto)
-  medidores: MedidorCreateDto[];
+  medidores?: MedidorCreateDto[];
 }
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {}

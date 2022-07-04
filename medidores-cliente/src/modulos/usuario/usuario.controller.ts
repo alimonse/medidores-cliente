@@ -1,31 +1,40 @@
-import {Body, Controller, Get, Post} from '@nestjs/common';
-import {UsuarioService} from "./usuario.service";
-import {CreateUserDto, UsuarioPassDto} from "./dto/usuario.create.dto";
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { UsuarioService } from './usuario.service';
+import { CreateUserDto, UsuarioPassDto } from './dto/usuario.create.dto';
+import { ApiMedidoresService } from '../servicios-externos/api-medidores.service';
 
 @Controller('usuario')
 export class UsuarioController {
-    constructor(
-        private readonly _usuarioService: UsuarioService
-    ) {
-    }
+  constructor(
+    private readonly _usuarioService: UsuarioService,
+    private readonly _apiMedidoresService: ApiMedidoresService,
+  ) {}
 
+  @Post('consultaU')
+  buscarPorUsuarioyContrasena(@Body() usuarioPass: UsuarioPassDto) {
+    return this._usuarioService.buscarPorUsuarioyContrasena(usuarioPass);
+  }
 
-    @Post('consultaU')
-    buscarPorUsuarioyContrasena(@Body()usuarioPass:UsuarioPassDto ){
-        return this._usuarioService.buscarPorUsuarioyContrasena(usuarioPass)
-    }
+  @Post('estatus/:medidor')
+  obtenerEstatusMedidor(@Param('medidor') medidor: string) {
+    return this._apiMedidoresService.obtenerStatus(medidor);
+  }
 
-    @Post()
-    crear(@Body()datosCrear: CreateUserDto){
-        return this._usuarioService.crear(datosCrear)
-    }
+  @Post('create/:numMedidor')
+  crear(
+    @Param('numMedidor') numMedidor: string,
+    @Body() datosCrear: CreateUserDto,
+  ) {
+    return this._usuarioService.crear(datosCrear, numMedidor);
+  }
 
-    @Get()
-    obtener() {
-        return this._usuarioService.obtener();
-    }
+  @Put('medidor/:numMedidor')
+  medidas(@Param('medidor') medidor: string) {
+    return this._usuarioService.actualizarMedidas(medidor);
+  }
 
-
-
-
+  @Get()
+  obtener() {
+    return this._usuarioService.obtener();
+  }
 }
