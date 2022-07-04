@@ -1,22 +1,26 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Types } from 'mongoose';
+import { Document, SchemaTypes, Types } from 'mongoose';
 import { Medidas, MedidasSchema } from '../medidas/medidas.schema';
 
-@Schema()
+@Schema({
+  collection: 'medidor',
+  timestamps: true,
+})
 export class Medidor extends Document {
   @Prop({
     required: true,
   })
   numMedidor: string;
 
-  @Prop({
-    required: true,
-  })
+  @Prop()
   estado: boolean;
 
-  @Prop({
-    type: [MedidasSchema],
-  })
+  @Prop([
+    {
+      type: SchemaTypes.ObjectId,
+      ref: Medidas.name,
+    },
+  ])
   medidas?: Types.Array<Medidas>;
 }
 

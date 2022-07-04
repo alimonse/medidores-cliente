@@ -1,7 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-@Schema()
+@Schema({
+  collection: 'medidas',
+  timestamps: true,
+})
 export class Medidas extends Document {
   @Prop()
   fecha: string;
