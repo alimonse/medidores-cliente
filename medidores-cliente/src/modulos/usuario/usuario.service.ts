@@ -1,11 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, Schema } from 'mongoose';
+import { Model, Schema, Types } from 'mongoose';
 import { Usuario } from './usuario.schema';
 import { CreateUserDto, UsuarioPassDto } from './dto/usuario.create.dto';
 import { ApiMedidoresService } from '../servicios-externos/api-medidores.service';
 import * as moment from 'moment';
 import { Medidor } from '../medidor/medidor.schema';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class UsuarioService {
@@ -21,13 +23,14 @@ export class UsuarioService {
   async crear(datosUsuario: CreateUserDto, numMedidor: string) {
     //* consultar info medidor
     // const medidorInfo = await this._apiMedidoresService.obtenerInfo(numMedidor);
-    const nuevoMedidor = await this._medidorModel.create({ numMedidor: numMedidor });
+    
+    const nuevoMedidor = await this._medidorModel.create({
+      numMedidor: numMedidor,
+    });
 
     console.log(nuevoMedidor._id);
 
-    datosUsuario.medidores = [
-      nuevoMedidor._id
-    ]
+    datosUsuario.medidores = [nuevoMedidor._id];
 
     // datosUsuario.medidores = [
     //   {
@@ -60,6 +63,76 @@ export class UsuarioService {
 
     const nuevoUsuario = new this._usuarioModel(datosUsuario);
     return nuevoUsuario.save();
+  }
+
+  async consultarMedidasPorMedidor(medidor) {
+    console.log(medidor);
+    // return await this._medidorModel.find().exec()
+
+    return this._medidorModel.aggregate([
+      {
+        $lookup: {
+          from: 'usuarios',
+          localField: '_id',
+          foreignField: 'medidores',
+          as: 'usuario',
+        },
+      },
+      {
+        $unwind: {
+          path: '$usuario',
+          preserveNullAndEmptyArrays: false,
+        },
+      },
+
+      {
+        $match: {
+          $and: [
+            {
+              numMedidor: '22239619',
+            },
+            {
+              'usuario._id': new ObjectId('62c282eac8e277d713fbafae'),
+            },
+          ],
+        },
+      },
+      {
+        $lookup: {
+          from: 'medidas',
+          localField: 'medidas',
+          foreignField: '_id',
+          as: 'medidas',
+        },
+      },
+      {
+        $unwind: {
+          path: '$medidas',
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
+        $sort: {
+          'medidas._id': -1,
+        },
+      },
+      {
+        $group: {
+          _id: {
+            _id: '$_id',
+          },
+          medidas: {
+            $push: '$medidas',
+          },
+        },
+      },
+      {
+        $addFields: {
+          _id: '$_id._id',
+          medidas: '$medidas',
+        },
+      },
+    ]);
   }
 
   obtener() {

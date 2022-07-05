@@ -10,6 +10,11 @@ export class UsuarioController {
     private readonly _apiMedidoresService: ApiMedidoresService,
   ) {}
 
+  @Get('medidass/:medidor')
+  obtenerMedidas(@Param('medidor') medidor:string){
+    return this._usuarioService.consultarMedidasPorMedidor(medidor)
+  }
+
   @Post('consultaU')
   buscarPorUsuarioyContrasena(@Body() usuarioPass: UsuarioPassDto) {
     return this._usuarioService.buscarPorUsuarioyContrasena(usuarioPass);
