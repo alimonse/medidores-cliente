@@ -26,6 +26,51 @@ export class UsuarioService {
     private readonly _medidasModel: Model<Medidas>,
   ) {}
 
+  // async crear(datosUsuario: CreateUserDto, numMedidor: string) {
+  //   //* consultar info medidor
+  //   // const medidorInfo = await this._apiMedidoresService.obtenerInfo(numMedidor);
+  //
+  //   const nuevoMedidor = await this._medidorModel.create({
+  //     numMedidor: numMedidor,
+  //   });
+  //
+  //   console.log(nuevoMedidor._id);
+  //
+  //   datosUsuario.medidores = [nuevoMedidor._id];
+  //
+  //   // datosUsuario.medidores = [
+  //   //   {
+  //   //     numMedidor: medidorInfo.list[0].deviceId,
+  //   //     estado: JSON.parse(
+  //   //       medidorInfo.list[0].data.find((d) => d.dataType === '42460002').value,
+  //   //     ),
+  //   //     medidas: [
+  //   //       {
+  //   //         fecha: new Date(Date.now()).toISOString(),
+  //   //         medida: +medidorInfo.list[0].data.find(
+  //   //           (d) => d.dataType === 'Active energy(+) total',
+  //   //         ).value,
+  //   //         aL1: +medidorInfo.list[0].data.find(
+  //   //           (d) => d.dataType === '02010300',
+  //   //         ).value,
+  //   //         aL2: +medidorInfo.list[0].data.find(
+  //   //           (d) => d.dataType === '02010302',
+  //   //         ).value,
+  //   //         vL1: +medidorInfo.list[0].data.find(
+  //   //           (d) => d.dataType === '02000300',
+  //   //         ).value,
+  //   //         vL2: +medidorInfo.list[0].data.find(
+  //   //           (d) => d.dataType === '02000302',
+  //   //         ).value,
+  //   //       },
+  //   //     ],
+  //   //   },
+  //   // ];
+  //
+  //   const nuevoUsuario = new this._usuarioModel(datosUsuario);
+  //   return nuevoUsuario.save();
+  // }
+
   async crear(datosUsuario: CreateUserDto, numMedidor: string) {
     const nuevoMedidor = await this._medidorModel.create({
       numMedidor: numMedidor,
