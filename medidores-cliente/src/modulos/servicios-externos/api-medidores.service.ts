@@ -44,9 +44,12 @@ export class ApiMedidoresService {
       ],
     };
     // toPromise ==> firstValueFrom
+
     const statusMedidor = await firstValueFrom(
       this.httpService.post(this.url, data).pipe(
         map((resp) => {
+          console.log(resp.data, 'respuestaSTATUS');
+
           if (resp.status !== 200) {
             return false;
           }
@@ -55,6 +58,9 @@ export class ApiMedidoresService {
             return false;
           }
 
+          if (resp.data.list <= 0) {
+            return false;
+          }
           return true;
         }),
       ),

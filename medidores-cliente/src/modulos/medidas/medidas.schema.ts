@@ -10,7 +10,7 @@ import { Document } from 'mongoose';
 })
 export class Medidas extends Document {
   @Prop()
-  fecha: string;
+  fecha: number;
 
   @Prop()
   medida: number;

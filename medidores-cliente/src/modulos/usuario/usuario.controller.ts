@@ -10,9 +10,12 @@ export class UsuarioController {
     private readonly _apiMedidoresService: ApiMedidoresService,
   ) {}
 
-  @Get('medidass/:medidor')
-  obtenerMedidas(@Param('medidor') medidor:string){
-    return this._usuarioService.consultarMedidasPorMedidor(medidor)
+  @Get('medidass/:medidor/:idUsuario')
+  obtenerMedidas(
+    @Param('medidor') medidor: string,
+    @Param('idUsuario') idUsuario: string,
+  ) {
+    return this._usuarioService.consultarMedidasPorMedidor(medidor, idUsuario);
   }
 
   @Post('consultaU')
@@ -22,6 +25,7 @@ export class UsuarioController {
 
   @Post('estatus/:medidor')
   obtenerEstatusMedidor(@Param('medidor') medidor: string) {
+    console.log(medidor,'medidor');
     return this._apiMedidoresService.obtenerStatus(medidor);
   }
 
